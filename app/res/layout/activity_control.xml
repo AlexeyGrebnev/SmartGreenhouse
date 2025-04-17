@@ -1,0 +1,7 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="16dp">
+    <Button android:id="@+id/btn_light" android:text="Свет" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <Button android:id="@+id/btn_fan" android:text="Вентиляция" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <Button android:id="@+id/btn_water" android:text="Полив" android:layout_width="match_parent" android:layout_height="wrap_content" />
+</LinearLayout>
