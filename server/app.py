@@ -26,5 +26,12 @@ def run_auto_mode():
     auto_control()
     return jsonify({"status": "auto mode executed"}), 200
 
+@app.route("/logs", methods=["GET"])
+def get_logs():
+    logs = get_action_logs()
+    return jsonify(logs)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
+
