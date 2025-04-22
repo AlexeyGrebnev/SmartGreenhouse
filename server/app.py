@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import sensors
 import devices
+from flask import render_template
 
 # ✅ импорт автоматической логики
 from gpio.auto_logic import auto_control
@@ -48,6 +49,10 @@ def control_device():
     if success:
         log_action(device, action)
     return jsonify({"status": "ok" if success else "fail"})
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
