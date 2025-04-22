@@ -1,0 +1,36 @@
+name: Python CI/CD for Greenhouse
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📦 Checkout репозитория
+      uses: actions/checkout@v3
+
+    - name: 🐍 Установка Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: 📥 Установка зависимостей
+      run: |
+        cd server
+        pip install -r ../ci-cd/requirements.txt
+
+    - name: ✅ Проверка кода (flake8)
+      run: |
+        pip install flake8
+        flake8 .
+
+    # (опционально) Деплой
+    - name: 🚀 Деплой на Raspberry Pi
+      if: github.ref == 'refs/heads/main'
+      run: |
+        bash ci-cd/deploy.sh
