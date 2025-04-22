@@ -31,6 +31,13 @@ def get_logs():
     logs = get_action_logs()
     return jsonify(logs)
 
+@app.route("/sensors", methods=["GET"])
+def get_sensor_data():
+    data = sensors.read_all()
+    # ✅ логирование
+    log_sensor_data(data["temperature"], data["humidity"], data["light"])
+    return jsonify(data)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
 
