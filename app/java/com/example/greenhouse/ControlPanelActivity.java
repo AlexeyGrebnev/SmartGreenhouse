@@ -22,9 +22,9 @@ public class ControlPanelActivity extends AppCompatActivity {
 
         ApiService api = NetworkService.getInstance().getApi();
 
-        lightButton.setOnClickListener(v -> sendCommand(api, "light_on"));
-        fanButton.setOnClickListener(v -> sendCommand(api, "fan_on"));
-        waterButton.setOnClickListener(v -> sendCommand(api, "water_on"));
+        lightButton.setOnClickListener(v -> sendCommand(api, "light", "on"));
+        fanButton.setOnClickListener(v -> sendCommand(api, "fan", "on"));
+        waterButton.setOnClickListener(v -> sendCommand(api, "water", "on"));
     }
 
     private void sendCommand(ApiService api, String command) {
