@@ -13,13 +13,24 @@ def get_sensor_data():
     data = sensors.read_all()
     return jsonify(data)
 
-@app.route("/control", methods=["POST"])
+@app.route('/control', methods=['POST'])
 def control_device():
-    payload = request.get_json()
-    device = payload.get("device")
-    action = payload.get("action")
-    success = devices.control(device, action)
-    return jsonify({"status": "ok" if success else "fail"})
+    data = request.get_json()
+    if not data or 'device' not in data or 'action' not in data:
+        return jsonify({"error": "Missing 'device' or 'action' in request"}), 400
+
+    device = data['device']
+    action = data['action']
+
+    if device not in ['water', 'light', 'fan']:
+        return jsonify({"error": "Invalid device type"}), 400
+    if action not in ['on', 'off']:
+        return jsonify({"error": "Invalid action"}), 400
+
+    # Пример действия с GPIO — заглушка
+    # gpio_control(device, action)
+
+    return jsonify({"status": f"{device} turned {action}"}), 200
 
 # ✅ Новый endpoint: автоматическое управление
 @app.route("/auto", methods=["POST"])
