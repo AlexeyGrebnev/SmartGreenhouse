@@ -27,9 +27,6 @@ def control_device():
     if action not in ['on', 'off']:
         return jsonify({"error": "Invalid action"}), 400
 
-    # Пример действия с GPIO — заглушка
-    # gpio_control(device, action)
-
     return jsonify({"status": f"{device} turned {action}"}), 200
 
 # ✅ Новый endpoint: автоматическое управление
